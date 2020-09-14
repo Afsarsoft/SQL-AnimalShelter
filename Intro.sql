@@ -1,34 +1,31 @@
 SELECT 'Hello World!';
 
 SELECT *
-FROM Shelter.Staff;
+FROM Shelter.Person;
 
 SELECT 'SQL is Fun!' AS Fact
-FROM Shelter.STaff;
+FROM Shelter.Person;
 
-SELECT *, 'SQL is Fun!' AS Fact
-FROM Shelter.STaff;
-
-
+-- Notice use of NULL, use only IS ans IS NOT 
 SELECT *
 FROM Shelter.Animal
 WHERE	Breed = NULL;
 
 SELECT *
 FROM Shelter.Animal
-WHERE	Breed != NULL;
+WHERE	Breed <> NULL;
 
 SELECT *
 FROM Shelter.Animal
 WHERE	Breed = NULL
 	OR
-	Breed != NULL;
+	Breed <> NULL;
 
 SELECT *
 FROM Shelter.Animal
 WHERE	Breed = 'Bullmastiff'
 	OR
-	Breed != 'Bullmastiff';
+	Breed <> 'Bullmastiff';
 
 SELECT *
 FROM Shelter.Animal
@@ -38,20 +35,20 @@ SELECT *
 FROM Shelter.Animal
 WHERE	Breed IS NOT NULL;
 
-SELECT *
-FROM Shelter.Animal
-WHERE	Breed != 'Bullmastiff';
 
 SELECT *
 FROM Shelter.Animal
-WHERE	Breed != 'Bullmastiff'
+WHERE	Breed <> 'Bullmastiff';
+
+SELECT *
+FROM Shelter.Animal
+WHERE	Breed <> 'Bullmastiff'
 	OR
 	Breed IS NULL;
 
 SELECT *
 FROM Shelter.Animal
-WHERE 	ISNULL(Breed, 'Some value') != 'Bullmastiff';
-
+WHERE 	ISNULL(Breed, 'Some value') <> 'Bullmastiff';
 
 -- Granular detail rows
 SELECT *
