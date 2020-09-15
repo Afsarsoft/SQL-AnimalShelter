@@ -31,12 +31,20 @@ FROM Shelter.Animal AS A
 		Shelter.Adoption AS AD;
 -- (7000 rows affected)
 
--- Show all animals adopted 
+-- Show all animals adopted, V1 
 SELECT A.Name, A.Breed, AD.*
 FROM Shelter.Animal AS A
 	INNER JOIN
 	Shelter.Adoption AS AD
 	ON	A.AnimalID = AD.AnimalID;
+-- (70 rows affected)
+
+-- Show all animals adopted, V2 
+SELECT Name, Breed
+FROM Shelter.Animal
+WHERE AnimalID
+IN (SELECT AnimalID
+FROM Shelter.Adoption);
 -- (70 rows affected)
 
 -- Show all animals adopted info regardless adopted or not V1
@@ -54,6 +62,23 @@ FROM Shelter.Animal AS A
 	Shelter.Adoption AS AD
 	ON	A.AnimalID = AD.AnimalID;
 -- (100 rows affected)
+
+-- Show all animals not adopted, V1
+SELECT A.Name, A.Breed, AD.*
+FROM Shelter.Animal AS A
+	LEFT OUTER JOIN
+	Shelter.Adoption AS AD
+	ON	A.AnimalID = AD.AnimalID
+WHERE AD.AnimalID IS NULL;
+-- (30 rows affected)
+
+-- Show all animals not adopted, V2
+SELECT Name, Breed
+FROM Shelter.Animal
+WHERE AnimalID
+NOT IN (SELECT AnimalID
+FROM Shelter.Adoption);
+-- (30 rows affected)
 
 -- Show all animals adopted, more info 
 SELECT P.FirstName, P.LastName, AN.Name AS AnimalName, AN.Breed, AD.Date AS AdoptionDate, AD.Fee AS AdoptionFee
