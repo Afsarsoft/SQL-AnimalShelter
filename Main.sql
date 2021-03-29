@@ -341,7 +341,6 @@ ORDER BY NumberOfAdoptions DESC;
 /*
 Animal vaccination report
 --------------------------
-
 Write a query to report the number of vaccinations each animal has received.
 Include animals that were never adopted.
 Exclude all rabbits.
